@@ -1,0 +1,15 @@
+{
+  "name": "wsmuliplex",
+  "version": "1.0.0",
+  "description": "Simple server broadcast messages.",
+  "scripts": {
+    "start": "node wsmultiplex.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Me",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ws": "^7.5.5"
+  }
+}
