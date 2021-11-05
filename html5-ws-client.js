@@ -1,7 +1,7 @@
 // const host = 'wss://wsevents.herokuapp.com/';
 const host = 'ws://localhost:3000';
 var ws;
-connect();
+
 // var ws = new WebSocket(host);
 
 // function sendText(){
@@ -29,15 +29,19 @@ connect();
 
 
 
+
+// Aca empiezan las funciones implementadas por gaston. L
+
 function connect(){
     console.log(`Opening connection!`);
     // ws = new WebSocket(document.getElementById("serverUrl").value);
     ws = new WebSocket(host);
     ws.onopen = sendRegistry;
-    // ws.onmessage = onMessage;
+    ws.onmessage = onMessage;
 }
 
 function disconnect(){
+    console.log(`Client disconnected`);
     ws.close(1000, "I leave the chat");
 }
 
@@ -48,19 +52,19 @@ function sendRegistry(){
     send(msg)
 }
 
-// function sendText(){
-//     text = document.getElementById("message").value;
-//     msg = '{"cmd":"text", "text":"'+text+'"}';
-//     send(msg)
+function sendText(){
+    text = document.getElementById("message").value;
+    msg = '{"cmd":"text", "text":"'+text+'"}';
+    send(msg)
 
-//     // show my message
-//     var message = document.createElement("p");
-//     message.setAttribute("class", "message myMessage");
-//     message.insertHTML = text;
+    // show my message
+    var message = document.createElement("p");
+    message.setAttribute("class", "message myMessage");
+    message.insertHTML = text;
 
-//     document.getElementById("messagesLog").appendChild(message);
-//     document.getElementById("messagesLog").scroll(0, 1000);
-// }
+    document.getElementById("messagesLog").appendChild(message);
+    document.getElementById("messagesLog").scroll(0, 1000);
+}
 
 function send(msg) {
     ws.send(JSON.stringify(msg));
